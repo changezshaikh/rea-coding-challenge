@@ -1,0 +1,16 @@
+@import "../../styles/breakpoints.scss";
+
+.header {
+  &__container {
+    background-color: #323232;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    @media (min-width: $desktop) {
+      margin-bottom: 50px;
+    }
+
+    img {
+      height: 37px;
+    }
+  }
+}
