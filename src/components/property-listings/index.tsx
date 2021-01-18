@@ -20,3 +20,5 @@ const PropertyListings = () => {
     </section>
   );
 };
+
+export default PropertyListings;
