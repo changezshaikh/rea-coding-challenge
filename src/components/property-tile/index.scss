@@ -1,3 +1,5 @@
+@import "../../styles/colors.scss";
+
 .property {
   &__container {
     .logo-image {
@@ -25,5 +27,27 @@
   &-price {
     font-weight: 600;
     font-size: 1.25em;
+  }
+
+  &-button {
+    border: none;
+    border-radius: 3px;
+    width: 133px;
+    height: 100%;
+    outline: 0;
+    color: #fff;
+    font-size: 1.125em;
+    font-weight: 500;
+    background-color: $sky-blue;
+    &:hover {
+      background-color: $sky-blue-highlight;
+    }
+  }
+
+  &-button--saved {
+    background-color: $crimson;
+    &:hover {
+      background-color: $crimson-highlight;
+    }
   }
 }

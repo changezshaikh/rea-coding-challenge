@@ -30,7 +30,14 @@ const PropertyTile = ({ property, propertyType }: Props) => {
       />
       <div className="property-footer">
         <span className="property-price">{property.price}</span>
-        <button type="button">{isSavedProperty ? `Remove` : `Save`}</button>
+        <button
+          type="button"
+          className={`property-button ${
+            isSavedProperty ? `property-button--saved` : ``
+          }`}
+        >
+          {isSavedProperty ? `Remove` : `Save`}
+        </button>
       </div>
     </div>
   );
