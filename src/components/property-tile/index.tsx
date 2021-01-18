@@ -6,10 +6,27 @@ import { Property } from "../../types/PropertyTypes.d";
 type Props = {
   property: Property;
   propertyType: string;
+  saveProperty: (property: Property) => void;
+  removeProperty: (property: Property) => void;
 };
 
-const PropertyTile = ({ property, propertyType }: Props) => {
+const PropertyTile = ({
+  property,
+  propertyType,
+  saveProperty,
+  removeProperty,
+}: Props) => {
+  // set type of property - SAVED or RESULTS
   const isSavedProperty = propertyType === PROPERTY_TYPES.SAVED;
+
+  // Calls save or remove based on current state of property tile
+  const handlePropertyAction = () => {
+    if (isSavedProperty) {
+      removeProperty(property);
+    } else {
+      saveProperty(property);
+    }
+  };
 
   return (
     <div className="property__container">
@@ -35,6 +52,7 @@ const PropertyTile = ({ property, propertyType }: Props) => {
           className={`property-button ${
             isSavedProperty ? `property-button--saved` : ``
           }`}
+          onClick={handlePropertyAction}
         >
           {isSavedProperty ? `Remove` : `Save`}
         </button>

@@ -9,6 +9,14 @@ type Props = {
 };
 
 const PropertyListings = ({ results, saved }: Props) => {
+  const saveProperty = (property: Property) => {
+    // saves the property
+  };
+
+  const removeProperty = (property: Property) => {
+    // removes the property
+  };
+
   // returns a property list of either saved or result properties
   const renderPropertyList = (propertyType: string) => {
     const properties =
@@ -21,6 +29,8 @@ const PropertyListings = ({ results, saved }: Props) => {
           property={property}
           key={property.id}
           propertyType={propertyType}
+          saveProperty={saveProperty}
+          removeProperty={removeProperty}
         />
       );
     });
