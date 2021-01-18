@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <div className="header__container">
-        <div className="l-padding">
+        <div className="container">
           <img src={reaLogo} alt="realestate.com.au Australia lives here" />
         </div>
       </div>
