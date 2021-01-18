@@ -33,7 +33,9 @@ const PropertyListings = ({ results, saved }: Props) => {
       if (item.id === property.id) return;
     });
     // Remove the property from the saved list
-    setSavedProperties([...saved.filter((item) => item.id !== property.id)]);
+    setSavedProperties([
+      ...savedProperties.filter((item) => item.id !== property.id),
+    ]);
   };
 
   // returns a property list of either saved or result properties
