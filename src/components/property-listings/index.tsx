@@ -54,6 +54,11 @@ const PropertyListings = ({ results, saved }: Props) => {
           propertyType={propertyType}
           saveProperty={saveProperty}
           removeProperty={removeProperty}
+          className={
+            propertyType === PROPERTY_TYPES.RESULTS
+              ? "property-tile-result"
+              : "property-tile-saved"
+          }
         />
       );
     });
