@@ -1,6 +1,12 @@
 import React from "react";
+import { Property } from "../../types/PropertyTypes.d";
 
-const PropertyListings = () => {
+type Props = {
+  results: Property[];
+  saved: Property[];
+};
+
+const PropertyListings = ({ results, saved }: Props) => {
   return (
     <section className="property-listings">
       <div className="container">
