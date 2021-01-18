@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import PropertyTile from ".";
 import { PROPERTY_TYPES } from "../../shared/constants";
 
@@ -29,5 +29,35 @@ describe("Property Tile tests", () => {
     );
 
     expect(container).toMatchSnapshot();
+  });
+
+  test("should call the 'Save' function passed correctly", () => {
+    const mockFn = jest.fn();
+    render(
+      <PropertyTile
+        property={testProperty}
+        propertyType={PROPERTY_TYPES.RESULTS}
+        saveProperty={mockFn}
+        removeProperty={() => {}}
+      />
+    );
+
+    screen.getByRole("button", { name: /save/i }).click();
+    expect(mockFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call the 'Remove' function passed correctly", () => {
+    const mockFn = jest.fn();
+    render(
+      <PropertyTile
+        property={testProperty}
+        propertyType={PROPERTY_TYPES.SAVED}
+        saveProperty={() => {}}
+        removeProperty={mockFn}
+      />
+    );
+
+    screen.getByRole("button", { name: /remove/i }).click();
+    expect(mockFn).toHaveBeenCalledTimes(1);
   });
 });
