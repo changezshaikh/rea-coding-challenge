@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header tests should render without crashing and match snapshot 1`] = `
+<div>
+  <header>
+    <div
+      class="header__container"
+    >
+      <div
+        class="l-padding"
+      >
+        <img
+          alt="realestate.com.au Australia lives here"
+          src="rea-logo.png"
+        />
+      </div>
+    </div>
+  </header>
+</div>
+`;
