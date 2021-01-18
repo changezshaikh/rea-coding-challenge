@@ -8,6 +8,7 @@ type Props = {
   propertyType: string;
   saveProperty: (property: Property) => void;
   removeProperty: (property: Property) => void;
+  className?: string;
 };
 
 const PropertyTile = ({
@@ -15,6 +16,7 @@ const PropertyTile = ({
   propertyType,
   saveProperty,
   removeProperty,
+  className,
 }: Props) => {
   // set type of property - SAVED or RESULTS
   const isSavedProperty = propertyType === PROPERTY_TYPES.SAVED;
@@ -29,7 +31,7 @@ const PropertyTile = ({
   };
 
   return (
-    <div className="property__container">
+    <div className={`property__container ${className || ""}`}>
       <div
         className="property-header"
         style={{ backgroundColor: property.agency.brandingColors.primary }}
@@ -40,11 +42,7 @@ const PropertyTile = ({
           className="logo-image"
         />
       </div>
-      <img
-        src={property.mainImage}
-        alt={property.id}
-        className="property-image"
-      />
+      <img src={property.mainImage} alt="Property" className="property-image" />
       <div className="property-footer">
         <span className="property-price">{property.price}</span>
         <button
