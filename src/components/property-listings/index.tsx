@@ -16,7 +16,13 @@ const PropertyListings = ({ results, saved }: Props) => {
 
     if (!properties || !properties.length) return "";
     return properties.map((property) => {
-      return <PropertyTile property={property} key={property.id} />;
+      return (
+        <PropertyTile
+          property={property}
+          key={property.id}
+          propertyType={propertyType}
+        />
+      );
     });
   };
   return (
