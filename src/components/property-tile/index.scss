@@ -1,10 +1,29 @@
-.property__container {
-  .logo-image {
-    margin: 10px 0;
+.property {
+  &__container {
+    .logo-image {
+      margin: 10px 0;
+    }
   }
-
-  .property-image {
+  &-image {
     width: 100%;
     object-fit: contain;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+
+  &-footer {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-price {
+    font-weight: 600;
+    font-size: 1.25em;
   }
 }
