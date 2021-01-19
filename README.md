@@ -8,6 +8,10 @@ The project renders a page that lists out properties from sample data showing se
 
 This project was built using Node version 15.16.0
 
+## Getting started
+
+Run `npm install` to install all necessary packages and then run `npm start` to start the website.
+
 ## Available Scripts
 
 In the project directory, you can run:
