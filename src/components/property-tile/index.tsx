@@ -31,7 +31,14 @@ const PropertyTile = ({
   };
 
   return (
-    <div className={`property__container ${className || ""}`}>
+    <div
+      className={`property__container ${className || ""}`}
+      data-testid={
+        isSavedProperty
+          ? `saved-property-${property.id}`
+          : `result-property-${property.id}`
+      }
+    >
       <div
         className="property-header"
         style={{ backgroundColor: property.agency.brandingColors.primary }}

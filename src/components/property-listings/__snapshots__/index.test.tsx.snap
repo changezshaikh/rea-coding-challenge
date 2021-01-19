@@ -23,6 +23,7 @@ exports[`Property Listings tests should render without crashing and match snapsh
         >
           <div
             class="property__container property-tile-result"
+            data-testid="result-property-1"
           >
             <div
               class="property-header"
@@ -57,6 +58,7 @@ exports[`Property Listings tests should render without crashing and match snapsh
           </div>
           <div
             class="property__container property-tile-result"
+            data-testid="result-property-2"
           >
             <div
               class="property-header"
@@ -91,6 +93,7 @@ exports[`Property Listings tests should render without crashing and match snapsh
           </div>
           <div
             class="property__container property-tile-result"
+            data-testid="result-property-3"
           >
             <div
               class="property-header"
@@ -140,6 +143,7 @@ exports[`Property Listings tests should render without crashing and match snapsh
         >
           <div
             class="property__container property-tile-saved"
+            data-testid="saved-property-4"
           >
             <div
               class="property-header"
