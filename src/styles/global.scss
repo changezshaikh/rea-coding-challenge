@@ -22,12 +22,13 @@ body {
   grid-template-columns: 1fr;
   gap: 20px;
   @media (min-width: $tablet) {
-    max-width: calc(75% - 16px);
+    max-width: calc(90% - 16px);
     padding-left: 32px;
     padding-right: 32px;
   }
 
   @media (min-width: $desktop) {
+    max-width: calc(75% - 16px);
     padding-left: 48px;
     padding-right: 48px;
     grid-template-columns: 1fr 1fr;
