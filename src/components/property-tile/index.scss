@@ -1,4 +1,5 @@
 @import "../../styles/colors.scss";
+@import "../../styles/breakpoints.scss";
 
 .property {
   &__container {
@@ -9,9 +10,11 @@
       margin: 10px 0;
     }
 
-    &:hover {
-      .property-button {
-        display: block;
+    @media (min-width: $desktop) {
+      &:hover {
+        .property-button {
+          display: block;
+        }
       }
     }
   }
@@ -40,8 +43,8 @@
 
   &-button {
     cursor: pointer;
-    display: none;
     border: none;
+    display: block;
     border-radius: 3px;
     width: 133px;
     height: 100%;
@@ -52,6 +55,10 @@
     background-color: $sky-blue;
     &:hover {
       background-color: $sky-blue-highlight;
+    }
+
+    @media (min-width: $desktop) {
+      display: none;
     }
   }
 
