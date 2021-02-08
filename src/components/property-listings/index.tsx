@@ -38,6 +38,19 @@ const PropertyListings = ({ results, saved }: Props) => {
     ]);
   };
 
+  const disableProperty = (property: Property) => {
+    // filter out the list for everything apart from the current property
+    const filteredProperties = resultProperties.filter(
+      (prop) => prop.id !== property.id
+    );
+    // set the disabled flag on the property in the list
+    const propertyToDisable: Property = { ...property, disabled: true };
+    // Push the property to the end of the list
+    filteredProperties.push(propertyToDisable);
+    // set the property back in to state
+    setResultProperties(filteredProperties);
+  };
+
   // returns a property list of either saved or result properties
   const renderPropertyList = (propertyType: string) => {
     const properties =
@@ -54,6 +67,12 @@ const PropertyListings = ({ results, saved }: Props) => {
           propertyType={propertyType}
           saveProperty={saveProperty}
           removeProperty={removeProperty}
+          disableProperty={
+            propertyType === PROPERTY_TYPES.RESULTS
+              ? disableProperty
+              : undefined
+          }
+          disabled={property.disabled}
           className={
             propertyType === PROPERTY_TYPES.RESULTS
               ? "property-tile-result"
