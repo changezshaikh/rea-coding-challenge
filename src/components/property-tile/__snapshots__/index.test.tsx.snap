@@ -3,7 +3,7 @@
 exports[`Property Tile tests should render without crashing and match snapshot 1`] = `
 <div>
   <div
-    class="property__container "
+    class="property__container  "
     data-testid="result-property-1"
   >
     <div

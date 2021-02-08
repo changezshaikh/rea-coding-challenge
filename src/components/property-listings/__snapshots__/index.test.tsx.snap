@@ -22,7 +22,7 @@ exports[`Property Listings tests should render without crashing and match snapsh
           class="row"
         >
           <div
-            class="property__container property-tile-result"
+            class="property__container property-tile-result "
             data-testid="result-property-1"
           >
             <div
@@ -57,7 +57,7 @@ exports[`Property Listings tests should render without crashing and match snapsh
             </div>
           </div>
           <div
-            class="property__container property-tile-result"
+            class="property__container property-tile-result "
             data-testid="result-property-2"
           >
             <div
@@ -92,7 +92,7 @@ exports[`Property Listings tests should render without crashing and match snapsh
             </div>
           </div>
           <div
-            class="property__container property-tile-result"
+            class="property__container property-tile-result "
             data-testid="result-property-3"
           >
             <div
@@ -142,7 +142,7 @@ exports[`Property Listings tests should render without crashing and match snapsh
           class="row"
         >
           <div
-            class="property__container property-tile-saved"
+            class="property__container property-tile-saved "
             data-testid="saved-property-4"
           >
             <div

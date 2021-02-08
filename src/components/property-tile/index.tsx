@@ -35,7 +35,7 @@ const PropertyTile = ({
   return (
     <div
       className={`property__container ${className || ""} ${
-        disabled && "property__container--disabled"
+        disabled ? "property__container--disabled" : ""
       }`}
       data-testid={
         isSavedProperty

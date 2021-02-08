@@ -60,4 +60,20 @@ describe("Property Tile tests", () => {
     screen.getByRole("button", { name: /remove/i }).click();
     expect(mockFn).toHaveBeenCalledTimes(1);
   });
+
+  test("should not save the property when disabled", () => {
+    const mockFn = jest.fn();
+    render(
+      <PropertyTile
+        property={testProperty}
+        propertyType={PROPERTY_TYPES.RESULTS}
+        saveProperty={mockFn}
+        removeProperty={() => {}}
+        disabled
+      />
+    );
+
+    screen.getByRole("button", { name: /save/i }).click();
+    expect(mockFn).toHaveBeenCalledTimes(0);
+  });
 });
