@@ -76,4 +76,52 @@ describe("Property Tile tests", () => {
     screen.getByRole("button", { name: /save/i }).click();
     expect(mockFn).toHaveBeenCalledTimes(0);
   });
+
+  test("should call the disabled function when the button is clicked", () => {
+    const mockFn = jest.fn();
+    render(
+      <PropertyTile
+        property={testProperty}
+        propertyType={PROPERTY_TYPES.RESULTS}
+        saveProperty={() => {}}
+        removeProperty={() => {}}
+        disableProperty={mockFn}
+      />
+    );
+
+    screen.getByRole("button", { name: /disable/i }).click();
+    expect(mockFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("should not show the disable button when property is in the saved column", () => {
+    render(
+      <PropertyTile
+        property={testProperty}
+        propertyType={PROPERTY_TYPES.SAVED}
+        saveProperty={() => {}}
+        removeProperty={() => {}}
+      />
+    );
+
+    expect(
+      screen.queryByRole("button", { name: /disable/i })
+    ).not.toBeInTheDocument();
+  });
+
+  test("should not show the disable button when property is already disabled", () => {
+    render(
+      <PropertyTile
+        property={testProperty}
+        propertyType={PROPERTY_TYPES.RESULTS}
+        saveProperty={() => {}}
+        removeProperty={() => {}}
+        disableProperty={() => {}}
+        disabled
+      />
+    );
+
+    expect(
+      screen.queryByRole("button", { name: /disable/i })
+    ).not.toBeInTheDocument();
+  });
 });
