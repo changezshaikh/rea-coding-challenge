@@ -14,4 +14,5 @@ export type Property = {
   agency: AgencyDetails;
   id: string;
   mainImage: string;
+  disabled?: boolean;
 };
