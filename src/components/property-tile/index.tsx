@@ -9,6 +9,7 @@ type Props = {
   saveProperty: (property: Property) => void;
   removeProperty: (property: Property) => void;
   className?: string;
+  disabled?: boolean;
 };
 
 const PropertyTile = ({
@@ -17,6 +18,7 @@ const PropertyTile = ({
   saveProperty,
   removeProperty,
   className,
+  disabled,
 }: Props) => {
   // set type of property - SAVED or RESULTS
   const isSavedProperty = propertyType === PROPERTY_TYPES.SAVED;
@@ -26,13 +28,15 @@ const PropertyTile = ({
     if (isSavedProperty) {
       removeProperty(property);
     } else {
-      saveProperty(property);
+      if (!disabled) saveProperty(property);
     }
   };
 
   return (
     <div
-      className={`property__container ${className || ""}`}
+      className={`property__container ${className || ""} ${
+        disabled && "property__container--disabled"
+      }`}
       data-testid={
         isSavedProperty
           ? `saved-property-${property.id}`

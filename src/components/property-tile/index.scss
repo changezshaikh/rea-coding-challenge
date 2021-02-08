@@ -18,6 +18,15 @@
       }
     }
   }
+
+  &__container--disabled {
+    opacity: 0.4;
+
+    .property-button {
+      display: block;
+    }
+  }
+
   &-image {
     width: 100%;
     object-fit: contain;
