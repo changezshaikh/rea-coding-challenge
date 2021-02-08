@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { render, screen } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
 import PropertyTile from ".";
 import { PROPERTY_TYPES } from "../../shared/constants";
+import { Property } from "../../types/PropertyTypes.d";
+import { ActionProps } from "../../types/SharedTypes.d";
 
 const testProperty = {
   price: "$726,500",
@@ -18,13 +21,28 @@ const testProperty = {
 };
 
 describe("Property Tile tests", () => {
+  const mockSaveFn = jest.fn();
+  const mockRemoveFn = jest.fn();
+  const reducer = (state: Property[], action: ActionProps) => {
+    switch (action.type) {
+      case "saveProperty":
+        mockSaveFn();
+        return state;
+      case "removeProperty":
+        mockRemoveFn();
+        return state;
+      default:
+        return state;
+    }
+  };
+  const { result } = renderHook(() => useReducer(reducer, []));
+  const [, dispatch] = result.current;
   test("should render without crashing and match snapshot", () => {
     const { container } = render(
       <PropertyTile
         property={testProperty}
         propertyType={PROPERTY_TYPES.RESULTS}
-        saveProperty={() => {}}
-        removeProperty={() => {}}
+        dispatch={dispatch}
       />
     );
 
@@ -32,18 +50,16 @@ describe("Property Tile tests", () => {
   });
 
   test("should call the 'Save' function passed correctly", () => {
-    const mockFn = jest.fn();
     render(
       <PropertyTile
         property={testProperty}
         propertyType={PROPERTY_TYPES.RESULTS}
-        saveProperty={mockFn}
-        removeProperty={() => {}}
+        dispatch={dispatch}
       />
     );
 
     screen.getByRole("button", { name: /save/i }).click();
-    expect(mockFn).toHaveBeenCalledTimes(1);
+    expect(mockSaveFn).toHaveBeenCalledTimes(1);
   });
 
   test("should call the 'Remove' function passed correctly", () => {
@@ -52,12 +68,11 @@ describe("Property Tile tests", () => {
       <PropertyTile
         property={testProperty}
         propertyType={PROPERTY_TYPES.SAVED}
-        saveProperty={() => {}}
-        removeProperty={mockFn}
+        dispatch={dispatch}
       />
     );
 
     screen.getByRole("button", { name: /remove/i }).click();
-    expect(mockFn).toHaveBeenCalledTimes(1);
+    expect(mockRemoveFn).toHaveBeenCalledTimes(1);
   });
 });

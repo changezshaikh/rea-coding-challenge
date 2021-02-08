@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import PropertyTile from "../property-tile";
 import { PROPERTY_TYPES } from "../../shared/constants";
 import { Property } from "../../types/PropertyTypes.d";
+import { ActionProps } from "../../types/SharedTypes.d";
 
 type Props = {
   results: Property[];
@@ -10,33 +11,40 @@ type Props = {
 
 const PropertyListings = ({ results, saved }: Props) => {
   const [resultProperties, setResultProperties] = useState<Property[]>([]);
-  const [savedProperties, setSavedProperties] = useState<Property[]>([]);
+  // const [savedProperties, setSavedProperties] = useState<Property[]>([]);
+  const reducer = (state: Property[], action: ActionProps) => {
+    const { property } = action;
+    switch (action.type) {
+      case "initialLoad":
+        return saved;
+      case "saveProperty":
+        if (!property) return state;
+        // saves the property
+        // do nothing if the property already exists as a saved property
+        if (state.find((item: Property) => item.id === property.id))
+          return state;
+        // Add the new property into the saved properties list
+        return [...state, property];
+      case "removeProperty":
+        if (!property) return state;
+        // removes the property
+        // do nothing if the property does not exist in the list
+        state.forEach((item) => {
+          if (item.id === property.id) return;
+        });
+        // Remove the property from the saved list
+        return [...state.filter((item: Property) => item.id !== property.id)];
+      default:
+        return state;
+    }
+  };
+  const [savedProperties, dispatchSaved] = useReducer(reducer, []);
 
   // update the properties if props change
   useEffect(() => {
     setResultProperties(results);
-    setSavedProperties(saved);
+    dispatchSaved({ type: "initialLoad" });
   }, [results, saved]);
-
-  const saveProperty = (property: Property) => {
-    // saves the property
-    // do nothing if the property already exists as a saved property
-    if (savedProperties.find((item) => item.id === property.id)) return;
-    // Add the new property into the saved properties list
-    setSavedProperties([...savedProperties, property]);
-  };
-
-  const removeProperty = (property: Property) => {
-    // removes the property
-    // do nothing if the property does not exist in the list
-    savedProperties.forEach((item) => {
-      if (item.id === property.id) return;
-    });
-    // Remove the property from the saved list
-    setSavedProperties([
-      ...savedProperties.filter((item) => item.id !== property.id),
-    ]);
-  };
 
   // returns a property list of either saved or result properties
   const renderPropertyList = (propertyType: string) => {
@@ -52,8 +60,7 @@ const PropertyListings = ({ results, saved }: Props) => {
           property={property}
           key={property.id}
           propertyType={propertyType}
-          saveProperty={saveProperty}
-          removeProperty={removeProperty}
+          dispatch={dispatchSaved}
           className={
             propertyType === PROPERTY_TYPES.RESULTS
               ? "property-tile-result"

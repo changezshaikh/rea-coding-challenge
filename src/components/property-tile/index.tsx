@@ -1,21 +1,20 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import "./index.scss";
 import { PROPERTY_TYPES } from "../../shared/constants";
 import { Property } from "../../types/PropertyTypes.d";
+import { ActionProps } from "../../types/SharedTypes";
 
 type Props = {
   property: Property;
   propertyType: string;
-  saveProperty: (property: Property) => void;
-  removeProperty: (property: Property) => void;
+  dispatch: Dispatch<ActionProps>;
   className?: string;
 };
 
 const PropertyTile = ({
   property,
   propertyType,
-  saveProperty,
-  removeProperty,
+  dispatch,
   className,
 }: Props) => {
   // set type of property - SAVED or RESULTS
@@ -24,9 +23,9 @@ const PropertyTile = ({
   // Calls save or remove based on current state of property tile
   const handlePropertyAction = () => {
     if (isSavedProperty) {
-      removeProperty(property);
+      dispatch({ type: "removeProperty", property });
     } else {
-      saveProperty(property);
+      dispatch({ type: "saveProperty", property });
     }
   };
 
