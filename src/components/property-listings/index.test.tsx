@@ -52,4 +52,16 @@ describe("Property Listings tests", () => {
       screen.queryByTestId(`saved-property-${randomId}`)
     ).not.toBeInTheDocument();
   });
+
+  test("should match the snapshot when the first property is disabled", () => {
+    render(<PropertyListings {...properties} />);
+    // click "Disable" on the first property
+    screen.getAllByRole("button", { name: /disable/i })[0].click();
+    // expect the disabled property to have the correct class
+    expect(
+      screen
+        .getByTestId(`result-property-1`)
+        .classList.contains("property__container--disabled")
+    ).toBeTruthy();
+  });
 });
