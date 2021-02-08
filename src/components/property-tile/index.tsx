@@ -8,6 +8,7 @@ type Props = {
   propertyType: string;
   saveProperty: (property: Property) => void;
   removeProperty: (property: Property) => void;
+  disableProperty?: (property: Property) => void;
   className?: string;
   disabled?: boolean;
 };
@@ -17,6 +18,7 @@ const PropertyTile = ({
   propertyType,
   saveProperty,
   removeProperty,
+  disableProperty,
   className,
   disabled,
 }: Props) => {
@@ -56,6 +58,11 @@ const PropertyTile = ({
       <img src={property.mainImage} alt="Property" className="property-image" />
       <div className="property-footer">
         <span className="property-price">{property.price}</span>
+        {!isSavedProperty && !disabled && disableProperty && (
+          <button type="button" onClick={() => disableProperty(property)}>
+            Disable
+          </button>
+        )}
         <button
           type="button"
           className={`property-button ${
